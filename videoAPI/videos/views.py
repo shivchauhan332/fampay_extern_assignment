@@ -86,7 +86,7 @@ class Helper:
                 pass
         # delete old objects if more than 1000 objects are in database
         objectCount = len(YoutubeVideo.objects.all())
-        if len(objectCount)>1000:
+        if objectCount>1000:
             objects_to_delete = YoutubeVideo.objects.all()[0:objectCount-1000]
             for object in objects_to_delete:
                 object.delete()
