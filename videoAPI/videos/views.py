@@ -52,7 +52,7 @@ class Helper:
                 self.api_key_index = (
                     self.api_key_index+1) % len(self.api_keys)
                 self.reload_count = self.reload_count+1
-                if(self.reload_count > 1):
+                if(self.reload_count > len(self.api_keys)):
                     print("All available API keys are exhausted, add more API keys")
                     return None
                 return self.get_request()
