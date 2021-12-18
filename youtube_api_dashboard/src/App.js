@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
-
+import axios from 'axios';
+import { useState, useEffect } from "react";
+import Cards from './Components/Cards'
+import Header from './Components/Header'
 function App() {
+
+  const [apiURL, setApiURL] = useState("http://localhost:8000/api/get-videos");
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get(apiURL).then((response) => {
+      console.log(response.data);
+      setData(response.data);
+    })
+  }, [apiURL])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div
+        id="main-wrapper"
+        data-theme="light"
+        data-layout="vertical"
+        data-header-position="fixed"
+        data-boxed-layout="full"
+      >
+        <Header />
+        <div className="page-wrapper d-block">
+          <div className="page-content container-fluid">
+            <Cards data={data.results} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
