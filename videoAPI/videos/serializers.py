@@ -7,6 +7,7 @@ class YoutubeVideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = YoutubeVideo
         fields = ['id', 
+                  'video_id',
                   'video_title',
                   'description',
                   'publishing_datetime',

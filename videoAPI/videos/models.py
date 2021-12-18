@@ -5,6 +5,7 @@ from django.db import models
 
 
 class YoutubeVideo(models.Model):
+    video_id = models.CharField(default="No id", max_length=264)
     video_title = models.CharField(default="No Title", max_length=264)
     description = models.CharField(default="No Description", max_length=500, null=True, blank=True)
     publishing_datetime = models.DateTimeField()

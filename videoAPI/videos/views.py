@@ -35,7 +35,7 @@ class Helper:
             'q': 'football',
             'type': 'video',
             'order': 'date',
-            'publishedAfter': '2020-01-01T00:00:00Z',
+            'publishedAfter': '2021-01-01T00:00:00Z',
             'maxResults': 15,
             'key': self.api_keys[self.api_key_index]
         }
@@ -70,6 +70,7 @@ class Helper:
                 for object in objects:
                     object_snippet = object["snippet"]
                     video_data = {
+                        'video_id': object['id']['videoId'],
                         'video_title': object_snippet['title'],
                         'description': object_snippet['description'],
                         'publishing_datetime': object_snippet['publishedAt'],
@@ -83,3 +84,10 @@ class Helper:
             except:
                 print("Unable to save data")
                 pass
+        # delete old objects if more than 1000 objects are in database
+        objectCount = len(YoutubeVideo.objects.all())
+        if len(objectCount)>1000:
+            objects_to_delete = YoutubeVideo.objects.all()[0:objectCount-1000]
+            for object in objects_to_delete:
+                object.delete()
+
