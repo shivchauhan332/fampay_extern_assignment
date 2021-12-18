@@ -2,6 +2,7 @@ from .models import *
 from .serializers import YoutubeVideoSerializer
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import OrderingFilter,SearchFilter
 import yaml
 import requests
 
@@ -12,9 +13,10 @@ class YoutubeVideoAPIView(ListAPIView):
     queryset = YoutubeVideo.objects.all()
     serializer_class = YoutubeVideoSerializer
     pagination_class = PageNumberPagination
-    # def get_queryset(self):
-    #     data = YoutubeVideo.objects.all()
-    #     return data
+    filter_backends = (OrderingFilter, SearchFilter)
+    ordering_fields = ('video_title','publishing_datetime','channel_title',)
+    ordering = ('-publishing_datetime',)
+    search_fields = ('video_title','channel_title',)
 
 
 class Helper:
@@ -30,7 +32,7 @@ class Helper:
 
         params = {
             'part': 'snippet',
-            'q': 'anime',
+            'q': 'football',
             'type': 'video',
             'order': 'date',
             'publishedAfter': '2020-01-01T00:00:00Z',
@@ -41,6 +43,7 @@ class Helper:
 
         try:
             response.raise_for_status()
+            # set reload count to 0 upon successful completion of get request
             self.reload_count = 0
             return response.json()
         except:
