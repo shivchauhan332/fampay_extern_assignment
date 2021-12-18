@@ -35,7 +35,8 @@ const Cards = ({data}) => {
                             <CardTitle>{card.video_title}</CardTitle>
                             <CardSubtitle>{card.channel_title}</CardSubtitle>
                             <CardText>{card.description}</CardText>
-                            <Button>Button</Button>
+                            <Button><a href={`https://www.youtube.com/watch?v=${card.video_id}`}>Open</a></Button>
+                            <CardFooter>{card.publishing_datetime}</CardFooter>
                         </CardBody>
                     </Card>
                 </Col>

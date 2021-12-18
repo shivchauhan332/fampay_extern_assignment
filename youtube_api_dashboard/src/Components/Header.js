@@ -18,7 +18,7 @@ import {
 /* Import images which are need for the HEADER                                    */
 /*--------------------------------------------------------------------------------*/
 
-const Header = () => {
+const Header = ({ sortButtonHandler, searchHandler }) => {
 
     const showMobilemenu = () => {
         document.getElementById('main-wrapper').classList.toggle('show-sidebar');
@@ -30,7 +30,16 @@ const Header = () => {
     const toggleMenu = () => {
         document.getElementById('search').classList.toggle('show-search');
     }
-
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter') {
+            e.preventDefault()
+            searchHandler(e.target.value)
+            document.dispatchEvent(new KeyboardEvent('keydown',{
+                'keycode': 13,
+                'which': 13
+            }))
+        }
+    }
     const logo_url = "https://www.drupal.org/files/project-images/yt_logo_rgb_light.png"
     return (
         <header className="topbar navbarbg" data-navbarbg="skin4">
@@ -49,7 +58,7 @@ const Header = () => {
                                 className="light-logo"
                             />
                         </b>
-                        <font face="Allegro BT" color="#eeeeee" style={{fontSize:"35pt"}}>API   </font>
+                        <font face="Allegro BT" color="#eeeeee" style={{ fontSize: "35pt" }}>API   </font>
 
                     </NavbarBrand>
                     {/*--------------------------------------------------------------------------------*/}
@@ -62,8 +71,8 @@ const Header = () => {
                         <i className="ti-menu ti-close" />
                     </button>
                 </div>
-                
-                
+
+
                 <p>    </p>
                 <Collapse
                     className="navbarbg"
@@ -80,70 +89,82 @@ const Header = () => {
                                 className="hidden-sm-down"
                                 onClick={toggleMenu.bind(null)}
                             >
-                                <i style={{fontSize:"25pt", lineHeight:"2"}} className="ti-search" />
+                                <i style={{ fontSize: "25pt", lineHeight: "2" }} className="ti-search" />
                             </NavLink>
                             <Form className="app-search" id="search">
-                                <Input type="text" placeholder="Search & enter" />
-                                <button className="btn-link srh-btn" onClick={toggleMenu.bind(null)}>
+                                <Input type="text" placeholder="Search & enter" onKeyDown={handleKeyDown}/>
+                                <button className="btn-link srh-btn" type="button" onClick={toggleMenu.bind(null)}>
                                     <i className="ti-close" />
                                 </button>
                             </Form>
                         </NavItem>
                         <NavItem>
-                            <a
-                                href="https://wrappixel.com/templates/materialpro-react-admin/"
+                            <button
+                                onClick={() => {
+                                    sortButtonHandler("ordering=video_title")
+                                }}
                                 className="btn btn-danger mr-2"
                                 style={{ marginTop: '20px', marginLeft: '100px' }}
                             >
                                 Sort By Video Title Ascending
-                            </a>
+                            </button>
                         </NavItem>
                         <NavItem>
-                            <a
-                                href="https://wrappixel.com/templates/materialpro-react-admin/"
+                            <button
+                                onClick={() => {
+                                    sortButtonHandler("ordering=-video_title")
+                                }}
                                 className="btn btn-danger mr-2"
                                 style={{ marginTop: '20px', }}
                             >
                                 Sort By Video Title Descending
-                            </a>
+                            </button>
                         </NavItem>
                         <NavItem>
-                            <a
-                                href="https://wrappixel.com/templates/materialpro-react-admin/"
+                            <button
+                                onClick={() => {
+                                    sortButtonHandler("ordering=publishing_datetime")
+                                }}
                                 className="btn btn-danger mr-2"
                                 style={{ marginTop: '20px' }}
                             >
                                 Sort By Date Ascending
-                            </a>
+                            </button>
                         </NavItem>
                         <NavItem>
-                            <a
-                                href="https://wrappixel.com/templates/materialpro-react-admin/"
+                            <button
+                                onClick={() => {
+                                    sortButtonHandler("ordering=-publishing_datetime")
+                                }}
                                 className="btn btn-danger mr-2"
                                 style={{ marginTop: '20px' }}
                             >
                                 Sort By Date Descending
-                            </a>
+                            </button>
                         </NavItem>
                         <NavItem>
-                            <a
-                                href="https://wrappixel.com/templates/materialpro-react-admin/"
+                            <button
+                                onClick={()=>{
+                                    sortButtonHandler("ordering=channel_title")
+                                }}
                                 className="btn btn-danger mr-2"
                                 style={{ marginTop: '20px' }}
                             >
                                 Sort By Channel Title Ascending
-                            </a>
+                            </button>
                         </NavItem>
                         <NavItem>
-                            <a
-                                href="https://wrappixel.com/templates/materialpro-react-admin/"
+                            <button
+                                onClick={()=>{
+                                    sortButtonHandler("ordering=-channel_title")
+                                }}
                                 className="btn btn-danger mr-2"
                                 style={{ marginTop: '20px' }}
                             >
                                 Sort By Channel Title Descending
-                            </a>
+                            </button>
                         </NavItem>
-                        
+
                         {/*--------------------------------------------------------------------------------*/}
                         {/* End Search-box toggle                                                          */}
                         {/*--------------------------------------------------------------------------------*/}
