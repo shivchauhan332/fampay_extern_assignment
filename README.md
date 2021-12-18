@@ -3,7 +3,7 @@
 This project consists of a simple rest api made using django-rest-framework
 and a react app that consumes this api to form a dashboard.
 
-![Default Home View](__screenshots/home.png?raw=true "Title")
+![Default Home View](__screenshots/simpleRestApi.jpg?raw=true "Title")
 
 ### Main features
 
