@@ -9,8 +9,8 @@ and a react app that consumes this api to form a dashboard.
 
 First clone the repository from Github and switch to the new directory, make sure the branch is set to main:
 
-    $ git clone git@github.com/USERNAME/{{ project_name }}.git
-    $ cd {{ project_name }}
+    $ git clone https://github.com/shivchauhan332/fampay_extern_assignment/
+    $ cd ./videoAPI
 
 Install Virtual Environment for For django, if not present:
 
