@@ -52,10 +52,17 @@ Then install node package dependencies, and then start the server, make sure API
  
  Go to http://localhost:3000/api/get-videos on your browser
  
+ ### Screenshots
+ 
+Homepage:
+
 ![Default Home View](Screenshots/reactApp.jpg?raw=true "Title")
+
+Searching:
 
 ![Default Home View](Screenshots/reactAppSearch.jpg?raw=true "Title")
 
+Sorting: 
 ![Default Home View](Screenshots/reactAppSort.jpg?raw=true "Title")
     
 
