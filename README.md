@@ -3,85 +3,59 @@
 This project consists of a simple rest api made using django-rest-framework
 and a react app that consumes this api to form a dashboard.
 
-![Default Home View](screenshots/simpleRestApi.jpg?raw=true "Title")
+# Running the API
 
-### Installation
+First clone the repository from Github and switch to the project directory, make sure the branch is set to main:
 
-* Separated dev and production settings
+    $ git clone https://github.com/shivchauhan332/fampay_extern_assignment/
+    $ cd ./videoAPI
 
-* Example app with custom user model
+Install Virtual Environment for For django, if not present:
 
-* Bootstrap static files included
-
-* User registration and logging in as demo
-
-* Procfile for easy deployments
-
-* Separated requirements files
-
-* SQLite by default if no env variable is set
-
-# Usage
-
-To use this template to start your own project:
-
-### Existing virtualenv
-
-If your project is already in an existing python3 virtualenv first install django by running
-
-    $ pip install django
+    $ pip install virtualenv
     
-And then run the `django-admin.py` command to start the new project:
+Activate virtual environment:
 
-    $ django-admin.py startproject \
-      --template=https://github.com/nikola-k/django-template/zipball/master \
-      --extension=py,md \
-      <project_name>
-      
-### No virtualenv
+    $ ./env/scripts/activate
 
-This assumes that `python3` is linked to valid installation of python 3 and that `pip` is installed and `pip3`is valid
-for installing python 3 packages.
-
-Installing inside virtualenv is recommended, however you can start your project without virtualenv too.
-
-If you don't have django installed for python 3 then run:
-
-    $ pip3 install django
+Start the development server:
+   
+    $ python manage.py runserver --noreload
+ 
+### OR
+After cloning and changing directory, run:
     
-And then:
+    $ pip install -r requirements.txt
+    $ python -m manage.py makemigrations
+    $ python -m manage.py migrate
+Then start the development server:
 
-    $ python3 -m django startproject \
-      --template=https://github.com/nikola-k/django-template/zipball/master \
-      --extension=py,md \
-      <project_name>
-      
-      
-After that just install the local dependencies, run migrations, and start the server.
+    $ python -m manage.py runserver --noreload
 
-{% endif %}
+### For testing the API
+Go to http://localhost:8000/api/get-videos on your browser
+![Default Home View](Screenshots/simpleRestApi.jpg?raw=true "Title")
 
-# {{ project_name|title }}
+![Default Home View](Screenshots/filterAndSort.jpg?raw=true "Title")
 
-# Getting Started
+# Running React App
+First clone the repository from Github and switch branch to "dashboard" and then move to the project directory:
 
-First clone the repository from Github and switch to the new directory:
+    $ git clone https://github.com/shivchauhan332/fampay_extern_assignment/
+    $ git checkout dashboard
+    $ cd ./youtube_api_dashboard
 
-    $ git clone git@github.com/USERNAME/{{ project_name }}.git
-    $ cd {{ project_name }}
-    
-Activate the virtualenv for your project.
-    
-Install project dependencies:
+Then install node package dependencies, and then start the server, make sure API is also running at the same time
 
-    $ pip install -r requirements/local.txt
-    
-    
-Then simply apply the migrations:
+    $ npm i
+    $ npm start
+ 
+ Go to http://localhost:3000/api/get-videos on your browser
+ 
+![Default Home View](Screenshots/reactApp.jpg?raw=true "Title")
 
-    $ python manage.py migrate
+![Default Home View](Screenshots/reactAppSearch.jpg?raw=true "Title")
+
+![Default Home View](Screenshots/reactAppSort.jpg?raw=true "Title")
     
 
-You can now run the development server:
-
-    $ python manage.py runserver
