@@ -17,5 +17,5 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('get-videos', getVideos)
+    path('get-videos', YoutubeVideoAPIView.as_view())
 ]
